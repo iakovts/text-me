@@ -13,6 +13,8 @@ dependencies = [
 		"aiodns",
 		"pyyaml",
 		"pymongo",
+		"mongo",
 		]
 
-# [project.scripts]
+[project.scripts]
+run_srv = "text_me.text_me:run" 
