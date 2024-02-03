@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tools.setuptools]
+py_modules = ["text_me"]
+
+[project]
+name="text_me"
+version="0.0.1"
+dependencies = [
+		"aiohttp",
+		"aiodns",
+		"pyyaml",
+		"pymongo",
+		]
+
+# [project.scripts]
