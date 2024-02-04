@@ -10,6 +10,7 @@ name="text_me"
 version="0.0.1"
 dependencies = [
 		"aiohttp",
+		"aiohttp_jinja2",
 		"aiodns",
 		"pyyaml",
 		"pymongo",
