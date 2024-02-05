@@ -1,4 +1,3 @@
-import motor
 import asyncio
 
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -8,7 +7,7 @@ from .settings import config
 
 
 
-client = motor.motor_asyncio.AsyncIOMotorClient(
+client = AsyncIOMotorClient(
     config.get("host", "localhost"), config.get("port", 27017)
 )
 db = client.posts
@@ -46,4 +45,4 @@ async def test_db():
 
 
 if __name__ == "__main__":
-    asyncio.run(test_server())
+    asyncio.run(test_db())

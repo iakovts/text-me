@@ -13,7 +13,6 @@ def run() -> None:
     logging.basicConfig(level=logging.DEBUG)
     app = web.Application()
     app["config"] = config
-    print(BASE_DIR)
     aiohttp_jinja2.setup(
         app, loader=jinja2.FileSystemLoader(str(BASE_DIR / "templates"))
     )

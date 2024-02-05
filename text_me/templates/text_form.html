@@ -1,14 +1,22 @@
 {% set title= "Main" %}
+<link rel="stylesheet" href="{{ url('static', filename='styles.css' )}}">
 
-<form method="post">
- <!--    <tbody> -->
-	<!-- <tr> -->
-	<!--     Faculty Identification Number:  -->
-	<!--     <input type="text" id="facultyId" name="facultyId" value=""/> -->
-	<!-- </tr> -->
- <!--    </tbody> -->
-	<p> From <input type="text", name="from" /> </p>
-	<p> Text <input type="text", name="user_text" /> </p>
-	<!-- <p> <input type="submit", onclick="$('#loading').show();", value="Ρίξ' το"/></p> -->
-	<p> <input type="submit", value="Submit"> </p>
-</form>
+<div class="text-form">
+	<h2> Leave a text! </h2>
+
+	<form method="post">
+		<div class="user-box">
+			<input type="text", name="from", required="">
+			<label> From </label>
+		</div>
+		<div class="user-box">
+			<input type="text", name="user_text", required="">
+			<label> Message </label>
+		</div>
+		<a href="#" action="submit">
+			<input type="submit", value="">
+			<label> Submit </label>
+		</a>
+
+	</form>
+</div>

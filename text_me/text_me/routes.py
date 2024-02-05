@@ -1,6 +1,7 @@
 from aiohttp.web import Application
 
 from .views import IndexHandle, play_again
+from .settings import BASE_DIR
 
 
 def setup_routes(app: Application) -> None:
@@ -8,3 +9,4 @@ def setup_routes(app: Application) -> None:
     app.router.add_get("/", IndexHandle)
     app.router.add_get("/again", play_again, name="play_again")
     app.router.add_post("/again", play_again)
+    app.router.add_static("/static/", path=BASE_DIR / "static", name="static")
