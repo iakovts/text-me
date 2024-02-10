@@ -1,0 +1,6 @@
+MONGO_DB=admin
+MONGO_USER=superuser
+MONGO_PWD=superuser
+MONGO_HOST=localhost
+MONGO_PORT=27017
+

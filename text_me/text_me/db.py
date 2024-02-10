@@ -6,17 +6,23 @@ from pymongo.server_api import ServerApi
 from .settings import config
 
 
-
+# uri = (f'mongodb://{config.get("user")}:{config.get("password")}'
+#        f'@{config.get("host")}:{config.get("port")}/{config.get("database")}')
 client = AsyncIOMotorClient(
-    config.get("host", "localhost"), config.get("port", 27017)
+        host=config["mongodb"].get("host"),
+        port=int(config["mongodb"].get("port")),
+        username=config["mongodb"].get("username"),
+        password=config["mongodb"].get("password")
 )
-db = client.posts
-post_collection = db.collection
+db = getattr(client, f"{config['mongodb']['database']}")
+post_collection = db.post_collection
+import pdb; pdb.set_trace()
 
 
 async def write_post(data: dict[str, str]):
     document = {"from": data["from"], "text": data["user_text"]}
-    result = await db.post_collection.insert_one(document)
+    result = await post_collection.insert_one(document)
+    # result = await db.insert_one(document)
     return result.inserted_id
 
 

@@ -1,0 +1,8 @@
+mongodb:
+  database: ${MONGO_DB}
+  user: ${MONGO_USER}
+  password: ${MONGO_PWD}
+  host: ${MONGO_HOST}
+  port: ${MONGO_PORT}
+  minsize: ${MONGO_MINSIZE}
+  maxsize: ${MONGO_MAXSIZE}
