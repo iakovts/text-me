@@ -2,8 +2,9 @@
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
-[tools.setuptools]
-py_modules = ["text_me"]
+[tool.setuptools]
+packages = ["text_me"]
+
 
 [project]
 name="text_me"
@@ -14,7 +15,7 @@ dependencies = [
 		"aiodns",
 		"pyyaml",
 		"pymongo",
-		"mongo",
+		"motor",
 		]
 
 [project.scripts]
