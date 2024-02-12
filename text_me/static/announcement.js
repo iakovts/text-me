@@ -1,15 +1,21 @@
 const url = 'http://localhost:8080/get_records';
 
 function fetchMessages() {
+    if (typeof fetchMessages.post_count == "undefined") {
+        fetchMessages.post_count = 0;
+    }
     fetch(url)
         .then(response => response.json())
         .then(messages => {
             messages.forEach(message => {
-                addAnnouncement(message);
+                if (message.count >= fetchMessages.post_count) {
+                    addAnnouncement(message);
+                    fetchMessages.post_count = message.count;
+                }
             });
         })
         .catch(error => console.error('Error:', error));
-}
+};
 
 setInterval(fetchMessages, 1 * 1000);
 
@@ -27,9 +33,6 @@ function addAnnouncement(message) {
     textElement.className = 'text';
     textElement.appendChild(document.createTextNode(message.text));
     messageElement.appendChild(textElement);
-    // way to get datetime in iso 8601
-    // textElement.appendChild(document.createTextNode(message.datetime));
-
     announcementWall.appendChild(messageElement);
 
     announcementWall.scrollTop = announcementWall.scrollHeight;
