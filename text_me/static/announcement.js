@@ -4,14 +4,14 @@ function fetchMessages() {
     fetch(url)
         .then(response => response.json())
         .then(messages => {
-            messages.forEach(messageData => {
-                addAnnouncement(messageData);
+            messages.forEach(message => {
+                addAnnouncement(message);
             });
         })
         .catch(error => console.error('Error:', error));
 }
 
-setInterval(fetchMessages, 30 * 1000);
+setInterval(fetchMessages, 1 * 1000);
 
 function addAnnouncement(message) {
     var announcementWall = document.getElementById('announcementWall');
@@ -20,12 +20,12 @@ function addAnnouncement(message) {
 
     var fromText = document.createElement('span');
     fromText.className = 'from';
-    fromText.appendChild(document.createTextNode(messageData.from));
+    fromText.appendChild(document.createTextNode(message.from));
     messageElement.appendChild(fromText);
 
     var textElement = document.createElement('span');
     textElement.className = 'text';
-    textElement.appendChild(document.createTextNode(messageData.text));
+    textElement.appendChild(document.createTextNode(message.text));
     messageElement.appendChild(textElement);
 
     announcementWall.appendChild(messageElement);

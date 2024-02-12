@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rizzmo bar wall</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="./assets/favico.png">
+    <link rel="stylesheet" href="{{ url('static', filename='styles.css' )}}">
+    <link rel="icon" href="{{ url('static', filename='/assets/favico.png' )}}">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -15,7 +15,7 @@
 
     <!-- Logo -->
     <div class="logo-container">
-        <img src="./assets/logo.png" class="logo" alt="">
+        <img src="{{ url('static', filename='assets/logo.png') }}" class="logo" alt="">
     </div>
 </head>
 <body>
@@ -68,9 +68,9 @@
         </div>
     </div>
 
-    <!-- <script src="./announcement.js"></script> -->
-    <script src="audioPlayer.js"></script>  
-    <script src="submitForm.js"></script>
+    <script src="{{ url('static', filename='announcement.js') }}"></script>
+    <script src="{{ url('static', filename='audioPlayer.js') }}"></script>  
+    <!-- <script src="{{ url('static', filename='submitForm.js') }}"></script> -->
     
 </body>
 </html>
