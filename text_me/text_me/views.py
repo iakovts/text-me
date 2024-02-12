@@ -21,12 +21,8 @@ class IndexHandle(web.View):
 
 
 class FetchHandler(web.View):
-    last_fetch = None
-
-    # @aiohttp_jinja2.template("announcement.html")
     async def get(self):
-        resp = await find_all(FetchHandler.last_fetch)
-        FetchHandler.last_fetch = datetime.datetime.now()
+        resp = await find_all()
         return web.json_response(resp)
 
 
