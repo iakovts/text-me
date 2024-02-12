@@ -35,8 +35,6 @@ async def find_all(last_fetch):
     if not last_fetch:
         # First run - fetch all
         last_fetch = datetime.datetime.now() - timedelta(seconds=20000)
-    else:
-        last_fetch = datetime.datetime.now() - last_fetch
     cursor = db.post_collection.find({
         "datetime": {
             "$gte": last_fetch} },
