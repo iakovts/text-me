@@ -1,22 +1,86 @@
 {% set title= "Main" %}
-<link rel="stylesheet" href="{{ url('static', filename='styles.css' )}}">
 
-<div class="text-form">
-	<h2> Leave a text! </h2>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rizzmo bar</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="{{ url('static', filename='styles.css' )}}">
+    <!-- <link rel="icon" href="./assets/favico.png"> -->
+    <link rel="icon" href="{{ url('static', filename='/assets/favico.png' )}}">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+</head>
+<body>
 
-	<form method="post">
-		<div class="user-box">
-			<input type="text", name="from", required="">
-			<label> From </label>
-		</div>
-		<div class="user-box">
-			<input type="text", name="user_text", required="">
-			<label> Message </label>
-		</div>
-		<a href="#" action="submit">
-			<input type="submit", value="">
-			<label> Submit </label>
-		</a>
+    <!-- Logo -->
+    <div class="logo-container">
+        <!-- <img src="./assets/logo.png" class="logo" alt=""> -->
+        <img src="{{ url('static', filename='assets/logo.png') }}" class="logo" alt="">
+    </div>
+    
+    <!-- Form -->
+    <form id="textForm" class="form">
+        <div class="title">
+          <h2>Στείλε την αφιέρωσή σου</h2>
+        </div>
+        <div class="half">
+          <div class="item">
+            <label for="name">Όνομα</label>
+            <input type="text" id = "name" name="name">
+          </div>
+        </div>
+        <div class="full">
+          <label for="message">Μήνυμα</label>
+          <textarea name="" id = "message" name="message"></textarea>
+        </div>
+        <div class="action">
+          <input type="submit" value = "SEND MESSAGE">
+          <input type="reset" value = "RESET" class="reset-button">
+        </div>
+        <div class="icons">
+          <a href="https://gizmolab.net/" class = "fa fa-external-link icon" target="_blank"></a>
+          <a href="https://www.facebook.com/ovradera" class = "fa fa-facebook icon" target="_blank"></a>
+          <a href="https://www.instagram.com/ovradera/" class = "fa fa-instagram" icon target="_blank"></a>
+          <a href="https://github.com/g1zmolab" class = "fa fa-github icon" target="_blank"></a>
+        </div>
+      </form>
 
-	</form>
-</div>
+      <!-- Audio player -->
+      <div class="custom-audio-player">
+        <div class="audio-controls">
+            <div class="play-pause-btn">
+                <i class="fa fa-play-circle-o" aria-hidden="true" id="play"></i>
+                <i class="fa fa-pause-circle-o" aria-hidden="true" id="pause"></i>
+                <i class="fa fa-volume-up" aria-hidden="true"></i>
+            </div>                
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
+            <!-- <audio id="audio" src="https://radio.gizmolab.net:8001/gizmolab"></audio> -->
+            <audio id="audio" src="http://as.fm1.be:8000/wrgm1"></audio>
+        </div>
+    </div>
+
+    <!-- Success toast message -->
+    <div>
+        <div id="success-toast" class="success-toast">
+            <p>Το μήνυμα σας στάλθηκε επιτυχώς!</p>
+        </div>
+    </div>
+
+    <!-- Fail toast message -->
+    <div>
+        <div id="fail-toast" class="fail-toast">
+            <p>Κάτι πήγε λάθος. Παρακαλώ προσπαθήστε ξανά.</p>
+    </div>
+    
+    <!-- <script src="audioPlayer.js"></script>   -->
+    <script src="{{ url('static', filename='audioPlayer.js') }}"></script>
+    <!-- <script src="submitForm.js"></script> -->
+    <script src="{{ url('static', filename='submitForm.js') }}"></script>
+
+</body>
+</html>
