@@ -3,6 +3,7 @@ import datetime
 from datetime import timedelta
 
 
+
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.server_api import ServerApi
 
@@ -18,13 +19,17 @@ client = AsyncIOMotorClient(config.get("host", "localhost"), config.get("port", 
 db = client.posts
 post_collection = db.collection
 
-
 async def write_post(data: dict[str, str]):
+    post_counter = 0
+    # post_counter_uuid = uuid.uuid4()
     document = {
         "from": data["from"],
         "text": data["user_text"],
-        "datetime": datetime.datetime.now(),
+        "datetime": datetime.datetime.now().isoformat(),
+        # "counter_uuid": post_counter_uuid,
+        "count": post_counter,
     }
+    post_counter += 1
     result = await db.post_collection.insert_one(document)
     return result.inserted_id
 
@@ -34,12 +39,9 @@ async def find_by_id(ObjID):
     return document
 
 
-async def find_all(last_fetch):
-    if not last_fetch:
-        # First run - fetch all
-        last_fetch = datetime.datetime.now() - timedelta(seconds=20000)
+async def find_all():
     cursor = db.post_collection.find(
-        {"datetime": {"$gte": last_fetch}}, {"from": 1, "text": 1, "_id": 0}
+            {}, {"from": 1, "text": 1, "_id": 0, "count": 1}
     ).limit(100)
     return await cursor.to_list(length=100)
 

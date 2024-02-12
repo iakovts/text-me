@@ -13,7 +13,7 @@ class IndexHandle(web.View):
     async def post(self) -> None:
         form = await self.request.post()
         inserted_id = await write_post(form)
-        raise web.HTTPFound(self.request.app.router["play_again"].url_for())
+        # raise web.HTTPFound(self.request.app.router["play_again"].url_for())
 
     @aiohttp_jinja2.template("text_form.html")
     async def get(self):
@@ -21,13 +21,14 @@ class IndexHandle(web.View):
 
 
 class FetchHandler(web.View):
-    last_fetch = None
-
     async def get(self):
-        resp = await find_all(FetchHandler.last_fetch)
-        FetchHandler.last_fetch = datetime.datetime.now()
+        resp = await find_all()
         return web.json_response(resp)
 
+
+@aiohttp_jinja2.template("announcement.html")
+async def message_wall(request):
+    return {}
 
 @aiohttp_jinja2.template("play_again.html")
 async def play_again(request):

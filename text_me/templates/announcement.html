@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rizzmo bar wall</title>
+    <link rel="stylesheet" href="{{ url('static', filename='styles.css' )}}">
+    <link rel="icon" href="{{ url('static', filename='/assets/favico.png' )}}">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <!-- Logo -->
+    <div class="logo-container">
+        <img src="{{ url('static', filename='assets/logo.png') }}" class="logo" alt="">
+    </div>
+</head>
+<body>
+    <div class="form">
+        <div class="title">
+            <h2>Ravasaki wall</h2>
+          </div>          
+          <div class="full">
+            <div id="announcementWall">
+            </div>
+          </div>
+    </div>
+
+    <!-- Audio player -->
+    <div class="custom-audio-player">
+        <div class="audio-controls">
+            <div class="play-pause-btn">
+                <i class="fa fa-play-circle-o" aria-hidden="true" id="play"></i>
+                <i class="fa fa-pause-circle-o" aria-hidden="true" id="pause"></i>
+                <i class="fa fa-volume-up" aria-hidden="true"></i>
+            </div>                
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
+            <audio id="audio" src="https://radio.gizmolab.net:8001/gizmolab"></audio>
+        </div>
+    </div>
+
+    <script src="{{ url('static', filename='announcement.js') }}"></script>
+    <script src="{{ url('static', filename='audioPlayer.js') }}"></script>  
+    <!-- <script src="{{ url('static', filename='submitForm.js') }}"></script> -->
+    
+</body>
+</html>
