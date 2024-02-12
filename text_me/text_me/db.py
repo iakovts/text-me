@@ -2,6 +2,8 @@ import asyncio
 import datetime
 from datetime import timedelta
 
+import uuid
+
 
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.server_api import ServerApi
@@ -18,13 +20,17 @@ client = AsyncIOMotorClient(config.get("host", "localhost"), config.get("port", 
 db = client.posts
 post_collection = db.collection
 
-
 async def write_post(data: dict[str, str]):
+    post_counter = 0
+    post_counter_uuid = uuid.uuid4()
     document = {
         "from": data["from"],
         "text": data["user_text"],
         "datetime": datetime.datetime.now().isoformat(),
+        "counter_uuid": post_counter_uuid,
+        "count": post_counter,
     }
+    post_counter += 1
     result = await db.post_collection.insert_one(document)
     return result.inserted_id
 
