@@ -40,8 +40,8 @@ async def find_all(last_fetch):
         last_fetch = datetime.datetime.now() - timedelta(seconds=20000)
     cursor = db.post_collection.find(
         {"datetime": {"$gte": last_fetch}}, {"from": 1, "text": 1, "_id": 0}
-    ).limit(5)
-    return await cursor.to_list(length=5)
+    ).limit(100)
+    return await cursor.to_list(length=100)
 
 
 async def ping_server():
