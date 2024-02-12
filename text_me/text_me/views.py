@@ -1,5 +1,5 @@
 import datetime
-import json 
+import json
 from typing import Any
 from aiohttp import WSMsgType, web
 import aiohttp
@@ -22,11 +22,11 @@ class IndexHandle(web.View):
 
 class FetchHandler(web.View):
     last_fetch = None
+
     async def get(self):
         resp = await find_all(FetchHandler.last_fetch)
         FetchHandler.last_fetch = datetime.datetime.now()
         return web.json_response(resp)
-
 
 
 @aiohttp_jinja2.template("play_again.html")
@@ -38,14 +38,13 @@ async def play_again(request):
 
 async def websocket_handler(request):
 
-        ws = web.WebSocketResponse()
-        await ws.prepare(request)
-        async for msg in ws:
-            if msg.type == aiohttp.WSMsgType.TEXT:
-                if msg.data == "close":
-                    await ws.close()
-                else:
-                    await ws.send_str(msg.data) 
-            elif msg.type == aiohttp.WSMsgType.ERROR:
-                print("ws connection closed with error %s" % ws.exception())
-
+    ws = web.WebSocketResponse()
+    await ws.prepare(request)
+    async for msg in ws:
+        if msg.type == aiohttp.WSMsgType.TEXT:
+            if msg.data == "close":
+                await ws.close()
+            else:
+                await ws.send_str(msg.data)
+        elif msg.type == aiohttp.WSMsgType.ERROR:
+            print("ws connection closed with error %s" % ws.exception())
