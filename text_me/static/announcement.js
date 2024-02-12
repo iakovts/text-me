@@ -27,6 +27,8 @@ function addAnnouncement(message) {
     textElement.className = 'text';
     textElement.appendChild(document.createTextNode(message.text));
     messageElement.appendChild(textElement);
+    // way to get datetime in iso 8601
+    // textElement.appendChild(document.createTextNode(message.datetime));
 
     announcementWall.appendChild(messageElement);
 

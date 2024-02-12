@@ -23,7 +23,7 @@ async def write_post(data: dict[str, str]):
     document = {
         "from": data["from"],
         "text": data["user_text"],
-        "datetime": datetime.datetime.now(),
+        "datetime": datetime.datetime.now().isoformat(),
     }
     result = await db.post_collection.insert_one(document)
     return result.inserted_id
