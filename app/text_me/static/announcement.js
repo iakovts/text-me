@@ -1,4 +1,6 @@
-const url = 'http://localhost:8080/get_records';
+const url = 'https://rizz.gizmolab.net/get_records';
+
+let post_counter = -1;
 
 function fetchMessages() {
     if (typeof fetchMessages.post_count == "undefined") {
@@ -8,16 +10,16 @@ function fetchMessages() {
         .then(response => response.json())
         .then(messages => {
             messages.forEach(message => {
-                if (message.count >= fetchMessages.post_count) {
+                if (message.counter > post_counter) {
                     addAnnouncement(message);
-                    fetchMessages.post_count = message.count;
+                    post_counter = message.counter;
                 }
             });
         })
         .catch(error => console.error('Error:', error));
 };
 
-setInterval(fetchMessages, 1 * 1000);
+setInterval(fetchMessages, 5 * 1000);
 
 function addAnnouncement(message) {
     var announcementWall = document.getElementById('announcementWall');
@@ -37,3 +39,5 @@ function addAnnouncement(message) {
 
     announcementWall.scrollTop = announcementWall.scrollHeight;
 }
+
+fetchMessages()
