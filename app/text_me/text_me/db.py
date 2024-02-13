@@ -19,12 +19,22 @@ client = AsyncIOMotorClient(config.get("host", "mongo"), int(config.get("port", 
 db = client.posts
 post_collection = db.collection
 
+async def find_max_counter():
+    cursor = db.post_collection.find({}, {"_id": 0, "counter": 1}).sort({ "counter": -1 }).limit(1)
+    return await cursor.to_list(length=1)
+
 async def write_post(data: dict[str, str]):
     try:
         write_post.counter
     except AttributeError:
-        write_post.counter = 0
-    # post_counter_uuid = uuid.uuid4()
+        l = await find_max_counter()
+        if (len(l) == 0):
+            # set to zero if no counter exists
+            write_post.counter = 0;
+        else:
+            # else set to 1 more than the max to be ready for the upcoming insert
+            write_post.counter = l[0]["counter"] + 1;
+
     document = {
         "from": data["from"],
         "text": data["user_text"],
@@ -39,7 +49,6 @@ async def write_post(data: dict[str, str]):
 async def find_by_id(ObjID):
     document = await db.post_collection.find_one(ObjID)
     return document
-
 
 async def find_all():
     cursor = db.post_collection.find(
