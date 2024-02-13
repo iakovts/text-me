@@ -12,6 +12,7 @@ document.getElementById("textForm").addEventListener("submit", function(event) {
             setTimeout(function() {
                 success_toast.style.display = "none";
             }, 3000);
+	    document.getElementById("reset-button").click(); 
         } else {
             var fail_toast = document.getElementById("fail-toast");
             fail_toast.style.display = "block";

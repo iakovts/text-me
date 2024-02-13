@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Rizzmo bar wall</title>
     <link rel="stylesheet" href="{{ url('static', filename='styles.css' )}}">
     <link rel="icon" href="{{ url('static', filename='/assets/favico.png' )}}">
@@ -15,7 +16,9 @@
 
     <!-- Logo -->
     <div class="logo-container">
-        <img src="{{ url('static', filename='assets/logo.png') }}" class="logo" alt="">
+      <a href="/">
+	<img src="{{ url('static', filename='assets/logo.png') }}" class="logo" alt="">
+      </a>
     </div>
 </head>
 <body>
