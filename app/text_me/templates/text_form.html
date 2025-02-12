@@ -39,7 +39,9 @@
         </div>
         <div class="full">
           <label for="message">Μήνυμα</label>
-          <textarea type="text" id = "message" name="user_text" required></textarea>
+          <textarea type="text" id = "message" name="user_text" maxlength="500" required></textarea>
+          <div id="charCounter">500 χαρακτήρες απομένουν</div>
+          <div></div>
         </div>
         <div class="action">
           <input type="submit" value = "SEND MESSAGE">
@@ -85,6 +87,14 @@
     <script src="{{ url('static', filename='audioPlayer.js') }}"></script>
     <!-- <script src="submitForm.js"></script> -->
     <script src="{{ url('static', filename='submitForm.js') }}"></script>
+    <script>
+      document.getElementById("message").addEventListener("input", function() {
+          var maxLength = 500;
+          var currentLength = this.value.length;
+          var remaining = maxLength - currentLength;
+          document.getElementById("charCounter").textContent = remaining + " χαρακτήρες απομένουν";
+        });
+  </script>
 
 </body>
 </html>

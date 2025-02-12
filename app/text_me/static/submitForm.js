@@ -1,6 +1,12 @@
 document.getElementById("textForm").addEventListener("submit", function(event) {
     event.preventDefault(); 
 
+    var message = document.getElementById("message").value;
+    if (message.length > 500) {
+        alert("Το μήνυμα δεν μπορεί να υπερβαίνει τους 500 χαρακτήρες.");
+        return;
+    }
+
     fetch("/", {
         method: "POST",
         body: new FormData(event.target)
