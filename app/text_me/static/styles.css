@@ -249,6 +249,12 @@
   overflow-y: auto; 
 }
 
+#charCounter {
+  font-size: 0.8em;
+  color: #666;
+  margin-top: 5px;
+}
+
 @media (max-width: 480px){
   .form .half{
     flex-direction: column;
